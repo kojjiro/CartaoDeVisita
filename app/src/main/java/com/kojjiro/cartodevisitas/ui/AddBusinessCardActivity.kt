@@ -32,12 +32,17 @@ class AddBusinessCardActivity : AppCompatActivity() {
                 empresa = binding.tilEmpresa.editText?.text.toString(),
                 telefone = binding.tilTelefone.editText?.text.toString(),
                 email = binding.tilEmail.editText?.text.toString(),
-                fundopersonalizado = binding.tilCor.editText?.text.toString(),
+                fundopersonalizado = "#"+getRandomString(6).toString(),
             )
             mainViewModel.insert(businessCard)
             Toast.makeText(this, R.string.label_show_success, Toast.LENGTH_SHORT).show()
             finish()
         }
     }
+    fun getRandomString(length: Int) : String {
+        val charset =('A'..'F') + ('0'..'9')
 
+        return List(length) { charset.random() }
+            .joinToString("")
+    }
 }
